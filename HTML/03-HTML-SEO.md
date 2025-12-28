@@ -7,15 +7,18 @@
 ## 1.2 `description` 描述
 
 网站说明
-`<meta name="description" content="...">`
+
+```HTML
+<meta name="description" content="...">
+```
 
 ## 1.3 `keywords` 关键字
 
-页面关键词，搜索引擎的关注点之一
-（建议 8 个关键词以内，用英文逗号隔开）
-`<meta name="keywords" content="...">`
+页面关键词，搜索引擎的关注点之一（建议 8 个关键词以内，用英文逗号隔开）
 
----
+```HTML
+<meta name="keywords" content="...">
+```
 
 # 2. logo SEO 优化
 
@@ -25,8 +28,6 @@
    - 可以用 `font-size:0`
 4. 最后给链接一个 `title` 属性，鼠标放在 logo 上可以看到提示文字
 
----
-
 # 3. 导航栏
 
 实际开发中，导航栏不会直接用 `<a>` ，而是用 `<li> + <a>` 的做法
@@ -34,8 +35,6 @@
 > [!warning] 原因
 > `<li> + <a>` 语义更清晰，有条理
 > 如果直接用 `<a>` ，搜索引擎容易辨认为堆砌关键字的嫌疑，从而影响网站排名
-
----
 
 # 4. div 命名规范
 
