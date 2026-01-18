@@ -9,8 +9,6 @@ h3 {
 }
 ```
 
----
-
 # 2. CSS 引入方式
 
 ## 2.1 内部样式表
@@ -56,16 +54,12 @@ h3 {
 }
 ```
 
----
-
 # 3. Emmet 语法
 
 - `tac` --> `text-align: center;`
 - `ti2em` --> `text-indent: 2em`
 - `w100px` --> `width: 100px`
 - `tdnone` --> `text-decoration: none`
-
----
 
 # 4. 块级元素和行内元素
 

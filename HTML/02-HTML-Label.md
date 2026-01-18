@@ -373,9 +373,9 @@ html {
 
 ```HTML
 <!-- 实现形式1 -->
-<label for="sex">男<label/>
+<label for="sex">男</label>
 <input type="radio" name="sex" value="male"/>
 
 <!-- 实现形式2 -->
-<label for="sex"><input type="radio" name="sex" value="male" />男<label/>
+<label for="sex"><input type="radio" name="sex" value="male" />男</label>
 ```
