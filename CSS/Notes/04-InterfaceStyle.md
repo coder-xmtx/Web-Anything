@@ -52,8 +52,6 @@ em {
 }
 ```
 
----
-
 # 2. 文本属性
 
 ## 2.1 文本颜色 `color`
@@ -93,8 +91,6 @@ em {
 
 `text-shadow:h-shadow v-shadow blur color;`
 
----
-
 # 3. 无序列表
 
 去掉 `li` 前面的项目符号（小圆点）
@@ -104,8 +100,6 @@ li {
 	list-style:none;
 }
 ```
-
----
 
 # 4. 表单样式
 
@@ -128,8 +122,6 @@ textarea {
 	resize: none;
 }
 ```
-
----
 
 # 5. 鼠标样式 `cursor`
 
