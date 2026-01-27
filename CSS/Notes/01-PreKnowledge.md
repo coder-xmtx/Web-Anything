@@ -116,3 +116,9 @@ a {
 	display:block;
 }
 ```
+
+# 5. 样式初始化
+
+进行一些公共设置
+
+例如 `normalize.css`

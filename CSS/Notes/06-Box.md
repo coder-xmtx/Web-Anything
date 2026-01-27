@@ -127,16 +127,14 @@ div {
 
 # 7. 盒子阴影（`box-shadow`）
 
-`box-shadow: h-shadow v-shadow blur spread color inset;`
+`box-shadow: x轴偏移量 y轴偏移量 blur spread color inset;`
 
-| 值         | 描述                             |
-| ---------- | -------------------------------- |
-| `h-shadow` | 阴影水平位置 （必需）            |
-| `v-shadow` | 阴影垂直位置 （必需）            |
-| `blur`     | 模糊程度                         |
-| `spread`   | 阴影尺寸                         |
-| `color`    | 阴影颜色                         |
-| `inset`    | 将外部阴影（outset）改为内部阴影 |
+| 值       | 描述                             |
+| -------- | -------------------------------- |
+| `blur`   | 模糊程度                         |
+| `spread` | 阴影尺寸                         |
+| `color`  | 阴影颜色                         |
+| `inset`  | 将外部阴影（outset）改为内部阴影 |
 
 > [!example] 鼠标放在盒子上出现阴影
 >
@@ -145,3 +143,29 @@ div {
 > 	box-shadow: 10px 10px 10px -4px rgba(0,0,0,0.3);
 > }
 > ```
+
+# 8. 背景渐变和文字渐变
+
+## 1. 背景渐变
+
+`background: linear-gradient(角度, color1, color2)`
+
+如果对色标进行设置（相当于PPT里的渐变色块位置条）
+
+`background: linear-gradient(角度, color1 0%, color2 100%)`
+
+```css
+.box {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(to right, red, blue);
+}
+```
+
+## 2. 文字渐变
+
+有点没搞懂，暂时不写
+
+# 9. 过渡效果
+
+`transition: all 0.5s`
