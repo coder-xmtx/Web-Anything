@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue-CDN</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ message }}</p>
+      <p>My random lucky number is: {{ getRandomLuckyNumber() }}</p>
+    </div>
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        setup() {
+          const message = "Hello Vue!";
+
+          function getRandomLuckyNumber() {
+            return Math.floor(Math.random() * 10) + 1;
+          }
+          return {
+            message,
+            getRandomLuckyNumber,
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
