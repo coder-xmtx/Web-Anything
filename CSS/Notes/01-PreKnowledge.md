@@ -122,3 +122,7 @@ a {
 进行一些公共设置
 
 例如 `normalize.css`
+
+# 6. iconfont 和 CSS sprite
+
+不在这里赘述
