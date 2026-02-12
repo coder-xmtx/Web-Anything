@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-on</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body class="bg-[#030712]">
+    <div
+      id="app"
+      class="h-full flex flex-col justify-center items-start p-4 gap-4"
+    >
+      <h1 class="text-3xl text-white">03 - v-on</h1>
+      <div
+        id="case"
+        class="border-2 border-blue-500 rounded-md w-full flex flex-col gap-4 p-4"
+      >
+        <button
+          class="bg-blue-200 rounded-md hover:bg-blue-300 transition-all duration-500 w-1/2 mx-auto p-1 text-blue-500 font-bold disabled:bg-gray-500 disabled:text-white disabled:cursor-not-allowed cursor-pointer"
+          :disabled="isDisabled"
+          v-on:click="changeDisabled"
+        >
+          {{ disabledText }}
+        </button>
+        <button
+          class="bg-blue-200 rounded-md hover:bg-blue-300 transition-all duration-500 w-1/2 mx-auto p-1 text-blue-500 font-bold disabled:bg-gray-500 disabled:text-white disabled:cursor-not-allowed cursor-pointer"
+          v-on:click="removeDisabled"
+        >
+          点击启用上面的按钮
+        </button>
+      </div>
+      <div>
+        <p class="text-white">
+          通过 v-bind 实现 JS 中的值与 class 或者 style 进行绑定
+        </p>
+        <p class="text-white">
+          v-bind 的值可以是一个表达式，也可以是一个字符串，绑定是单向的
+        </p>
+      </div>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+      const app = createApp({
+        setup() {
+          const isDisabled = ref(false);
+          const disabledText = ref("点击禁用此按钮");
+          const changeDisabled = () => {
+            isDisabled.value = true;
+            disabledText.value = "已禁用";
+          };
+          const removeDisabled = () => {
+            isDisabled.value = false;
+            disabledText.value = "点击禁用此按钮";
+          };
+          return {
+            isDisabled,
+            changeDisabled,
+            disabledText,
+            removeDisabled,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue-Try</title>
+    <title>v-bind</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
@@ -12,25 +12,29 @@
       id="app"
       class="h-full flex flex-col justify-center items-start p-4 gap-4"
     >
-      <h1 class="text-3xl text-white">01 - 初识 Vue</h1>
+      <h1 class="text-3xl text-white">02 - v-bind</h1>
       <div
         id="case"
         class="border-2 border-blue-500 rounded-md w-full flex flex-col gap-4 p-4"
       >
-        <input
-          type="text"
-          v-model="message"
-          class="text-white border-2 border-white outline-none p-1 rounded-md"
-        />
-        <p class="text-white">这里会显示输入框中的文字：{{message}}</p>
+        <h2 v-bind:class="textColor" class="font-bold">TEST</h2>
+        <select
+          name="color"
+          id=""
+          class="text-white border-2 rounded-md p-1 outline:none"
+          v-model="textColor"
+        >
+          <option value="text-red-500" class="text-black">红色</option>
+          <option value="text-green-500" class="text-black">绿色</option>
+          <option value="text-blue-500" class="text-black">蓝色</option>
+        </select>
       </div>
       <div>
-        <p class="text-white">上述例子是通过 v-model 双向绑定实现</p>
         <p class="text-white">
-          input的值会影响我们在JS中的message，同样message的值会影响input
+          通过 v-bind 实现 JS 中的值与 class 或者 style 进行绑定
         </p>
         <p class="text-white">
-          ref 能够定义一个响应式的数据，可以直接在模板中使用
+          v-bind 的值可以是一个表达式，也可以是一个字符串，绑定是单向的
         </p>
       </div>
     </div>
@@ -38,9 +42,9 @@
       const { createApp, ref } = Vue;
       const app = createApp({
         setup() {
-          const message = ref("");
+          const textColor = ref("text-red-500");
           return {
-            message,
+            textColor,
           };
         },
       });
