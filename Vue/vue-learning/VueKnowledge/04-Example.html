@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue-Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body class="bg-[#030712]">
+    <div
+      id="app"
+      class="h-full flex flex-col justify-center items-start p-4 gap-4"
+    >
+      <h1 class="text-3xl text-white">04 - 一个表单校验的例子</h1>
+      <div
+        id="case"
+        class="border-2 border-blue-500 rounded-md w-full flex flex-col gap-4 p-4"
+      >
+        <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
+          <input
+            type="text"
+            class="text-white border-2 outline-none p-1 px-4 rounded-md"
+            :class="usernameError"
+            placeholder="Enter your username"
+            v-model="username"
+          />
+          <p class="text-red-500 text-xs">{{ usernameErrorText }}</p>
+          <input
+            type="text"
+            class="text-white border-2 outline-none p-1 px-4 rounded-md"
+            :class="passwordError"
+            placeholder="Enter your password"
+            v-model="password"
+          />
+          <p class="text-red-500 text-xs">{{ passwordErrorText }}</p>
+          <button
+            class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 font-bold transition-all duration-500 cursor-pointer"
+            type="submit"
+          >
+            LOGIN
+          </button>
+        </form>
+        <p class="text-white">Username: {{ username }}</p>
+        <p class="text-white">Password: {{ password }}</p>
+      </div>
+      <div>
+        <p class="text-white">
+          使用watch监听器实现表单校验，监听username和password的改变
+        </p>
+      </div>
+    </div>
+    <script>
+      const { createApp, ref, watch } = Vue;
+      const app = createApp({
+        setup() {
+          const username = ref("");
+          const password = ref("");
+          const usernameError = ref("border-white");
+          const passwordError = ref("border-white");
+          const usernameErrorText = ref("");
+          const passwordErrorText = ref("");
+          const handleSubmit = () => {
+            usernameError.value = "";
+            passwordError.value = "";
+            if (username.value.length < 3 || password.value.length < 3) {
+              alert("用户名和密码的长度必须大于等于3");
+              if (username.value.length < 3) {
+                usernameError.value = "border-red-500";
+              }
+              if (password.value.length < 3) {
+                passwordError.value = "border-red-500";
+              }
+              return;
+            }
+            alert(`欢迎您，${username.value}`);
+          };
+
+          watch(username, (newUsername) => {
+            usernameError.value = "";
+            usernameErrorText.value = "";
+            if (newUsername.length < 3) {
+              usernameError.value = "border-red-500";
+              usernameErrorText.value = "用户名长度必须大于等于3";
+            }
+          });
+          watch(password, (newPassword) => {
+            passwordError.value = "";
+            passwordErrorText.value = "";
+            if (newPassword.length < 3) {
+              passwordError.value = "border-red-500";
+              passwordErrorText.value = "密码长度必须大于等于3";
+            }
+          });
+          return {
+            username,
+            password,
+            handleSubmit,
+            usernameError,
+            passwordError,
+            usernameErrorText,
+            passwordErrorText,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

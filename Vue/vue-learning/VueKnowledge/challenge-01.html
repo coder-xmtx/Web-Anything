@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue-Challenge-01</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body class="bg-[#030712]">
+    <div
+      id="app"
+      class="h-full flex flex-col justify-center items-start p-4 gap-4"
+    >
+      <h1 class="text-3xl text-white">Challenge-01 动态矩形</h1>
+      <div
+        id="case"
+        class="border-2 border-blue-500 rounded-md w-full flex flex-col gap-4 p-4"
+      >
+        <section class="text-white flex flex-col gap-4" id="lever">
+          <label class="font-bold">Perspective: {{ Perspective }} px</label>
+          <input
+            title="Perspective"
+            type="range"
+            min="0"
+            max="999"
+            v-model="Perspective"
+          />
+
+          <label class="font-bold">RotateX: {{ RotateX }} deg</label>
+          <input
+            title="RotateX"
+            type="range"
+            min="0"
+            max="180"
+            v-model="RotateX"
+          />
+
+          <label class="font-bold">RotateY: {{ RotateY }} deg</label>
+          <input
+            title="RotateY"
+            type="range"
+            min="0"
+            max="180"
+            v-model="RotateY"
+          />
+
+          <label class="font-bold">RotateZ: {{ RotateZ }} deg</label>
+          <input
+            title="RotateZ"
+            type="range"
+            min="0"
+            max="180"
+            v-model="RotateZ"
+          />
+
+          <button
+            class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 font-bold transition-all duration-500 cursor-pointer"
+            @click="reset"
+          >
+            Reset
+          </button>
+        </section>
+        <section class="flex justify-center items-center p-30">
+          <div
+            class="w-32 h-32 bg-blue-300 rounded-md"
+            :style="{ transform: transformStyle }"
+          ></div>
+        </section>
+      </div>
+      <div>
+        <p class="text-white">通过 v-bind 绑定样式，实现一个动态的矩形</p>
+      </div>
+    </div>
+    <script>
+      const { createApp, ref, computed } = Vue;
+      const app = createApp({
+        setup() {
+          // 定义响应式变量
+          const Perspective = ref(0);
+          const RotateX = ref(0);
+          const RotateY = ref(0);
+          const RotateZ = ref(0);
+
+          // 重置函数
+          const reset = () => {
+            Perspective.value = 0;
+            RotateX.value = 0;
+            RotateY.value = 0;
+            RotateZ.value = 0;
+          };
+
+          const transformStyle = computed(
+            () =>
+              `perspective(${Perspective.value}px) rotateX(${RotateX.value}deg) rotateY(${RotateY.value}deg) rotateZ(${RotateZ.value}deg)`,
+          );
+
+          // 返回值
+          return {
+            Perspective,
+            RotateX,
+            RotateY,
+            RotateZ,
+            reset,
+            transformStyle,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
