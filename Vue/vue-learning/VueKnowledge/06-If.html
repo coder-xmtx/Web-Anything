@@ -41,7 +41,7 @@
             :key="index"
             class="text-white flex gap-4 items-center justify-between"
           >
-            <p :class="completed">{{ item.todoValue }}</p>
+            <p :class="item.completedClass">{{ item.todoValue }}</p>
             <div class="flex gap-4 items-center">
               <button
                 class="bg-blue-400 text-white font-bold p-1 rounded-md hover:bg-green-500 transition-all duration-300 cursor-pointer text-sm"
@@ -61,8 +61,7 @@
         </ul>
       </div>
       <div>
-        <p class="text-white">v-for 进行列表渲染</p>
-        <p class="text-white">很多时候 v-for 需要 v-bind:key 来提升性能</p>
+        <p class="text-white">v-if 进行条件渲染</p>
       </div>
     </div>
     <script>
@@ -85,6 +84,7 @@
             todoList.value.push({
               todoValue: todoMessage.value,
               isCompleted: false,
+              completedClass: "",
             });
             todoMessage.value = "";
           };
@@ -93,13 +93,10 @@
             todoList.value.splice(index, 1);
           };
 
-          // complete 状态
-          const completed = ref("");
-
           // complete 函数
           const completeTodo = (item) => {
             item.isCompleted = true;
-            completed.value = "line-through text-gray-500";
+            item.completedClass = "line-through text-gray-500";
           };
 
           // 返回
@@ -109,7 +106,6 @@
             addTodo,
             deleteTodo,
             completeTodo,
-            completed,
           };
         },
       });
