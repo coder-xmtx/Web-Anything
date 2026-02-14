@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../../../assets/web.svg" />
+    <title>v-for</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body class="bg-[#030712]">
+    <div
+      id="app"
+      class="h-full flex flex-col justify-center items-start p-4 gap-4"
+    >
+      <h1 class="text-3xl text-white">05 - v-for</h1>
+      <div
+        id="case"
+        class="border-2 border-blue-500 rounded-md w-full flex flex-col gap-4 p-4"
+      >
+        <h2 class="text-white font-bold text-2xl">TODO LIST</h2>
+        <div class="flex gap-4 items-center">
+          <input
+            type="text"
+            name=""
+            id=""
+            class="text-white border-2 outline-none p-1 px-4 rounded-md w-full"
+            placeholder="Enter your todo"
+            v-model.trim="todoMessage"
+          />
+          <button
+            class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 font-bold transition-all duration-500 cursor-pointer"
+            @click="addTodo"
+          >
+            add
+          </button>
+        </div>
+        <ul class="flex flex-col gap-4">
+          <li
+            v-for="(item, index) in todoList"
+            :key="index"
+            class="text-white flex gap-4 items-center justify-between"
+          >
+            <p>{{ item }}</p>
+            <button
+              class="bg-blue-400 text-white font-bold p-1 rounded-md hover:bg-red-500 transition-all duration-300 cursor-pointer text-sm"
+              @click="deleteTodo(index)"
+            >
+              delete
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white">v-for 进行列表渲染</p>
+        <p class="text-white">很多时候 v-for 需要 v-bind:key 来提升性能</p>
+      </div>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+      const app = createApp({
+        setup() {
+          // 定义 TODO 信息
+          const todoMessage = ref("");
+          // 定义 TODO 列表
+          const todoList = ref([]);
+          // 追加 TODO
+          const addTodo = () => {
+            // 如果为空返回
+            if (todoMessage.value === "") {
+              alert("TODO不可为空");
+              return;
+            }
+            // 如果不为空追加
+            todoList.value.push(todoMessage.value);
+            todoMessage.value = "";
+          };
+          // 删除 TODO
+          const deleteTodo = (index) => {
+            todoList.value.splice(index, 1);
+          };
+
+          // 返回
+          return {
+            todoMessage,
+            todoList,
+            addTodo,
+            deleteTodo,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
