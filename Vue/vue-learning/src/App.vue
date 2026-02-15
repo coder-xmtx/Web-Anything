@@ -1,48 +1,33 @@
 <script setup>
 import { ref, computed } from "vue";
-import TogglePurple from "./components/TogglePurple.vue";
-import CircleSize from "./components/CircleSize.vue";
-import SelectCircleTextColor from "./components/SelectCircleTextColor.vue";
-import CircleRotate from "./components/CircleRotate.vue";
+const advice = ref("There is no advice yet");
 
-const isPurple = ref(false);
-const circleColor = ref("text-white");
-const circleSize = ref(200);
-const circleAngle = ref(0);
+const isLoading = ref(false);
 
-const purple = computed(() =>
-  isPurple.value ? "bg-purple-500" : "bg-blue-300",
-);
+const getAdvice = async () => {
+  isLoading.value = true;
+  const response = await fetch("https://api.adviceslip.com/advice");
+  const data = await response.json();
+  advice.value = data.slip.advice;
+  isLoading.value = false;
+}
 
-const handlePurple = () => {
-  isPurple.value = !isPurple.value;
-};
-
-
-const circleStyle = computed(() => {
-  return {
-    width: `${circleSize.value}px`,
-    height: `${circleSize.value}px`,
-    transform: `rotate(${circleAngle.value}deg)`,
-  };
-});
+const message = computed(() =>
+  isLoading.value ? 'Loading...' : advice.value
+)
 </script>
 
 <template>
-  <h1 class="text-3xl text-white">07 - Example2-动态圆圈</h1>
+  <h1 class="text-3xl text-white">Example3 - 获取 API 数据</h1>
   <div id="case" class="border-2 border-blue-500 rounded-md w-full flex flex-col gap-4 p-4">
-    <TogglePurple :isPurple="isPurple" @toggle="handlePurple" />
-    <SelectCircleTextColor v-model:circleColor="circleColor" />
-    <CircleSize v-model:circleSize="circleSize" />
-    <CircleRotate v-model:circleAngle="circleAngle"> Circle Rotate </CircleRotate>
-
-    <div class="rounded-full flex justify-center items-center font-bold" :class="[purple, circleColor]"
-      :style="circleStyle">
-      HELLO
-    </div>
+    <h2 class="text-white font-bold">Advices</h2>
+    <p class="text-white">{{ message }}</p>
+    <button @click="getAdvice"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer duration-150">Get
+      Advice</button>
   </div>
   <div>
-    <p class="text-white">练习 v-bind 和 computed</p>
+    <p class="text-white">null</p>
   </div>
 </template>
 
