@@ -1,5 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import PopularComponent from "./PopularComponent.vue";
+import ComingComponent from "./ComingComponent.vue";
 const popularMovies = ref([])
 const comingMovies = ref([])
 const toggleActive = ref(false)
@@ -43,28 +45,27 @@ onMounted(() => {
 <template>
     <div class="flex flex-col gap-4 border-2 border-blue-400 text-white rounded-md w-sm p-2">
         <div class="flex gap-4">
-            <h2 class="text-white font-bold mx-auto cursor-pointer" @click="toggleActive = false"
+            <h2 class="text-white font-bold mx-auto cursor-pointer hover:text-cyan-100 " @click="toggleActive = false"
                 :class="{ 'border-b-2 border-blue-500': !toggleActive }">
                 热播电影</h2>
-            <h2 class="text-white font-bold mx-auto cursor-pointer" @click="toggleActive = true"
+            <h2 class="text-white font-bold mx-auto cursor-pointer hover:text-cyan-100" @click="toggleActive = true"
                 :class="{ 'border-b-2 border-blue-500': toggleActive }">
                 即将上映</h2>
         </div>
-        <div v-if="!toggleActive">
-            <div v-for="movie in popularMovies" :key="movie.id" class="flex flex-col justify-center items-center mb-4"
-                @click="handleMovieClick(movie)">
-                <img :src="movie.img" :alt="movie.nm" class="w-1/2 rounded-md cursor-pointer">
-                <p>{{ movie.nm }}</p>
-            </div>
+        <!-- <div v-show="!toggleActive" class="flex flex-col gap-4">
+            <PopularComponent :popularMovies="popularMovies" :handleMovieClick="handleMovieClick" />
         </div>
-        <div v-else>
-            <div v-for="movie in comingMovies" :key="movie.id" class="flex flex-col justify-center items-center mb-4"
-                @click="handleMovieClick(movie)">
-                <img :src="movie.img" :alt="movie.nm" class="w-1/2 rounded-md cursor-pointer">
-                <p>{{ movie.nm }}</p>
-            </div>
-        </div>
+        <div v-show="toggleActive" class="flex flex-col gap-4">
+            <ComingComponent :comingMovies="comingMovies" :handleMovieClick="handleMovieClick" />
+        </div> -->
 
+        <!-- 动态组件 -->
+        <div class="flex flex-col gap-4">
+            <KeepAlive>
+                <component :is="toggleActive ? ComingComponent : PopularComponent" :popularMovies="popularMovies"
+                    :comingMovies="comingMovies" :handleMovieClick="handleMovieClick" />
+            </KeepAlive>
+        </div>
     </div>
 
 </template>

@@ -15,12 +15,17 @@ const addMovie = (movie) => {
     }
 }
 
+// 定义删除电影的方法
+const deleteMovie = (movie) => {
+    watchedMovies.value = watchedMovies.value.filter(item => item.id !== movie.id)
+}
+
 </script>
 
 <template>
     <main class="flex gap-4">
         <PopularMovie :addMovie="addMovie" />
-        <WatchedMovie :watchedMovies="watchedMovies" />
+        <WatchedMovie :watchedMovies="watchedMovies" :deleteMovie="deleteMovie" />
     </main>
 </template>
 
