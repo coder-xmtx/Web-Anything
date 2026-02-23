@@ -1,6 +1,8 @@
 <script setup>
 import { getFinanceNews } from '@/services/api-FinanceNews';
 import { onMounted, ref } from 'vue';
+import NewList from '@/ui/NewList.vue';
+
 
 const news = ref([])
 
@@ -11,8 +13,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <van-card v-for="item in news" :key="item.newsId" :price="item.source" :desc="item.digest" :title="item.title"
-        currency="" :thumb="item.imgList[0]" />
+    <NewList :news="news" />
 
 </template>
 
