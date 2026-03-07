@@ -18,6 +18,11 @@ const router = createRouter({
       name: "length",
       component: () => import("../views/LengthView.vue"),
     },
+    {
+      path: "/weight",
+      name: "weight",
+      component: () => import("../views/WeightView.vue"),
+    },
   ],
 });
 
