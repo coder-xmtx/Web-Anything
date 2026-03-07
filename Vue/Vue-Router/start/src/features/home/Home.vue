@@ -11,8 +11,9 @@ const router = useRouter();
             <van-image src="temperature.svg" width="48" />
             <p>温度转换</p>
         </van-grid-item>
-        <van-grid-item>
+        <van-grid-item @click="router.push('/length')">
             <van-image src="length.svg" width="48" />
+            <p>长度转换</p>
         </van-grid-item>
         <van-grid-item>
             <van-image src="weight.svg" width="48" />

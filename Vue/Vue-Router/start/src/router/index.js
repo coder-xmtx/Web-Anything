@@ -13,6 +13,11 @@ const router = createRouter({
       name: "temperature",
       component: () => import("../views/TemperatureView.vue"),
     },
+    {
+      path: "/length",
+      name: "length",
+      component: () => import("../views/LengthView.vue"),
+    },
   ],
 });
 

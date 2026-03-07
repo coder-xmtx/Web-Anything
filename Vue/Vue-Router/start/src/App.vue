@@ -21,7 +21,7 @@ const goHome = () => {
   <main>
     <router-view />
 
-    <van-floating-bubble icon="setting-o" @click="goHome" v-if="route.path !== '/'" />
+    <van-floating-bubble icon="wap-home-o" @click="goHome" v-if="route.path !== '/'" />
 
   </main>
 </template>
