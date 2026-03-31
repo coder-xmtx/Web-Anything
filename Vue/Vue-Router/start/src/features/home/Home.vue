@@ -19,8 +19,9 @@ const router = useRouter();
             <van-image src="weight.svg" width="48" />
             <p>重量转换</p>
         </van-grid-item>
-        <van-grid-item>
+        <van-grid-item @click="router.push('/currency')">
             <van-image src="currency.svg" width="48" />
+            <p>货币转换</p>
         </van-grid-item>
         <van-grid-item>
             <van-image src="memo.svg" width="48" />

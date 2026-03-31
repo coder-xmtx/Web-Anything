@@ -23,6 +23,11 @@ const router = createRouter({
       name: "weight",
       component: () => import("../views/WeightView.vue"),
     },
+    {
+      path: "/currency",
+      name: "currency",
+      component: () => import("../views/CurrencyView.vue"),
+    },
   ],
 });
 
