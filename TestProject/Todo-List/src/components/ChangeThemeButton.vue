@@ -1,7 +1,7 @@
 <template>
     <label class="swap swap-rotate">
         <!-- this hidden checkbox controls the state -->
-        <input type="checkbox" class="theme-controller" value="cupcake" />
+        <input type="checkbox" class="theme-controller" value="night" />
 
         <!-- sun icon -->
         <svg class="swap-off h-10 w-10 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

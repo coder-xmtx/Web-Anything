@@ -9,7 +9,7 @@ import NavBar from './components/NavBar.vue';
     <NavBar />
   </nav>
 
-  <main class="px-4 sm:px-6 lg:px-8">
+  <main class="px-4 sm:px-6 lg:px-8 flex flex-col items-center">
     <RouterView />
   </main>
 </template>
